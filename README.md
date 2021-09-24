@@ -8,6 +8,7 @@ chx学习《统计学习方法》的代码练习。
 torch == 1.6.0
 pandas == 1.2.0
 tqdm == 4.56.0
+sklearn == 0.23.1
 ```
 
 ## Tree

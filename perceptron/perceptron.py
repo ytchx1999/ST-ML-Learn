@@ -6,7 +6,7 @@ from tqdm import tqdm
 
 def load_data(data_dir):
     data = pd.read_csv(data_dir)
-    np_data = data.values.astype('float')
+    np_data = data.values.astype('float32')
 
     data_img = np_data[:, 1:]
     data_img /= 255
@@ -26,7 +26,7 @@ def main():
     test_img, test_label = load_data('../data/mnist_test.csv')
     print(test_img.shape, test_label.shape)
 
-    w = torch.zeros((1, train_img.shape[1]), dtype=torch.float64)
+    w = torch.zeros((1, train_img.shape[1]))
     b = 0
 
     lr = 0.0001
@@ -53,7 +53,7 @@ def main():
     # torch.Size([59999, 784]) torch.Size([59999])
     # torch.Size([9999, 784]) torch.Size([9999])
     # 100%|██████████| 30/30 [01:08<00:00,  2.28s/it]
-    # 0.7986798679867987
+    # 0.772977297729773
 
 
 if __name__ == '__main__':
