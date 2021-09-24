@@ -17,8 +17,15 @@ sklearn == 0.23.1
 ├── README.md
 ├── data
 │   ├── mnist_test.csv
-│   └── mnist_train.csv
+│   ├── mnist_test.rar
+│   ├── mnist_train.csv
+│   └── mnist_train.rar
+├── knn
+│   ├── __init__.py
+│   ├── knn.py
+│   └── knn2.py
 └── perceptron
     ├── __init__.py
-    └── perceptron.py
+    ├── perceptron.py
+    └── perceptron2.py
 ```
