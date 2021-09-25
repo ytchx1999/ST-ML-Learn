@@ -1,5 +1,5 @@
 # ST-ML-Learn
-chx学习《统计学习方法》的代码练习。
+chx学习《统计学习方法》与UCAS《模式识别》的代码练习。
 
 参考：[https://github.com/Dod-o/Statistical-Learning-Method_Code](https://github.com/Dod-o/Statistical-Learning-Method_Code)
 
