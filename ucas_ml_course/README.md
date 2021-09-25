@@ -3,6 +3,7 @@
 ## Environment
 ```bash
 torch == 1.6.0
+matplotlib == 3.2.2
 ```
 ## Usage
 ```bash
