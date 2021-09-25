@@ -26,9 +26,9 @@ def main():
     print(m2)
     # print(m2.shape)
 
-    c1 = torch.matmul((x1 - m1), (x1 - m1).transpose(0, 1)) / 4
+    c1 = torch.matmul((x1 - m1), (x1 - m1).transpose(0, 1)) / x1.shape[1]
     print(c1)
-    c2 = torch.matmul((x2 - m2), (x2 - m2).transpose(0, 1)) / 4
+    c2 = torch.matmul((x2 - m2), (x2 - m2).transpose(0, 1)) / x2.shape[1]
     print(c2)
 
     c = c1.clone()
