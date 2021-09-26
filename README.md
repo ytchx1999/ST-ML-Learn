@@ -24,8 +24,18 @@ sklearn == 0.23.1
 │   ├── __init__.py
 │   ├── knn.py
 │   └── knn2.py
-└── perceptron
+├── naive_bayes
+│   ├── __init__.py
+│   ├── bayes.py
+│   └── bayes2.py
+├── perceptron
+│   ├── __init__.py
+│   ├── perceptron.py
+│   └── perceptron2.py
+└── ucas_ml_course
+    ├── 2-bayes.py
+    ├── README.md
     ├── __init__.py
-    ├── perceptron.py
-    └── perceptron2.py
+    └── img
+        └── bayes.png
 ```
