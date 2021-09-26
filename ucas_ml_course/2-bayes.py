@@ -54,7 +54,7 @@ def main():
 
     plt.scatter(x1[0], x1[1])
     plt.scatter(x2[0], x2[1])
-    plt.savefig('./img/bayes.png')
+    plt.savefig('./img/naive_bayes.png')
     plt.show()
 
 
