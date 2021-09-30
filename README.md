@@ -20,6 +20,11 @@ sklearn == 0.23.1
 │   ├── mnist_test.rar
 │   ├── mnist_train.csv
 │   └── mnist_train.rar
+├── decision_tree
+│   ├── __init__.py
+│   ├── node.py
+│   ├── tree.py
+│   └── tree2.py
 ├── knn
 │   ├── __init__.py
 │   ├── knn.py
@@ -34,6 +39,11 @@ sklearn == 0.23.1
 │   └── perceptron2.py
 └── ucas_ml_course
     ├── 2-bayes.py
+    ├── 3-perceptron
+    │   ├── __init__.py
+    │   ├── perceptron1.py
+    │   ├── perceptron2.py
+    │   └── perceptron3.py
     ├── README.md
     ├── __init__.py
     └── img
