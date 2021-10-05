@@ -27,8 +27,8 @@ def main():
     print(test_img.shape, test_label.shape)
 
     # sample 3000 examples to train and 1000 examples to test
-    # train_img, train_label = train_img[:3000], train_label[:3000]
-    # test_img, test_label = test_img[:1000], test_label[:1000]
+    train_img, train_label = train_img[:3000], train_label[:3000]
+    test_img, test_label = test_img[:1000], test_label[:1000]
 
     train_img = torch.cat([train_img, torch.ones(train_img.shape[0], 1)], dim=1)
     test_img = torch.cat([test_img, torch.ones(test_img.shape[0], 1)], dim=1)
@@ -36,7 +36,7 @@ def main():
 
     c = 0.001
 
-    for epoch in tqdm(range(200)):
+    for epoch in tqdm(range(300)):
         for i in range(train_img.shape[0]):
             e_wx = torch.exp(torch.matmul(w, train_img[i].reshape(-1, 1)))
             delta = (train_label[i] * train_img[i]) - (train_img[i] * e_wx) / (1 + e_wx)
@@ -54,6 +54,12 @@ def main():
             cnt += 1
 
     print(float(cnt) / test_img.shape[0])
+
+    # torch.Size([59999, 784]) torch.Size([59999])
+    # torch.Size([9999, 784]) torch.Size([9999])
+    # 100%|██████████| 300/300 [00:44<00:00,  6.76it/s]
+    # 100%|██████████| 1000/1000 [00:00<00:00, 18496.26it/s]
+    # 0.572
 
 
 if __name__ == '__main__':
