@@ -30,26 +30,34 @@ def main():
     train_img, train_label = train_img[:3000], train_label[:3000]
     test_img, test_label = test_img[:1000], test_label[:1000]
 
+    # 增广
     train_img = torch.cat([train_img, torch.ones(train_img.shape[0], 1)], dim=1)
     test_img = torch.cat([test_img, torch.ones(test_img.shape[0], 1)], dim=1)
-    w = torch.zeros(1, train_img.shape[1])
 
+    w = torch.zeros(1, train_img.shape[1])
     c = 0.001
 
+    # train
     for epoch in tqdm(range(300)):
         for i in range(train_img.shape[0]):
             e_wx = torch.exp(torch.matmul(w, train_img[i].reshape(-1, 1)))
+            # delta = y_i * x_i - x_i * exp(w * x_i) / (1 + exp(w * x_i))
             delta = (train_label[i] * train_img[i]) - (train_img[i] * e_wx) / (1 + e_wx)
             w += c * delta
 
+    # test
     cnt = 0
     for i in tqdm(range(test_img.shape[0])):
         e_wx = torch.exp(torch.matmul(w, test_img[i].reshape(-1, 1)))
+        # P(y=0 | x) = 1 / (1 + exp(w * x))
+        # P(y=1 | x) = 1 - P(y=0 | x)
         p_y0_x = 1 / (1 + e_wx)
+
         if p_y0_x > 0.5:
             y_pred = 0
         else:
             y_pred = 1
+
         if y_pred == test_label[1]:
             cnt += 1
 
