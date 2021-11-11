@@ -40,7 +40,7 @@ class EM:
         self.s2 = 1
 
     def gaus(self, u, s):
-        phi = (1. / math.sqrt(2 * math.pi) * s) * torch.exp(-((self.y - u) ** 2) / (2 * (s ** 2)))
+        phi = (1. / (math.sqrt(2 * math.pi) * s)) * torch.exp(-((self.y - u) ** 2) / (2 * (s ** 2)))
         return phi
 
     def e_step(self):
@@ -56,8 +56,8 @@ class EM:
         u1_new = torch.dot(gamma1, self.y) / torch.sum(gamma1)
         u2_new = torch.dot(gamma2, self.y) / torch.sum(gamma2)
 
-        s1_new = torch.dot(gamma1, (self.y - self.u1) ** 2) / torch.sum(gamma1)
-        s2_new = torch.dot(gamma2, (self.y - self.u2) ** 2) / torch.sum(gamma2)
+        s1_new = torch.sqrt(torch.dot(gamma1, (self.y - self.u1) ** 2) / torch.sum(gamma1))
+        s2_new = torch.sqrt(torch.dot(gamma2, (self.y - self.u2) ** 2) / torch.sum(gamma2))
 
         a1_new = torch.sum(gamma1) / self.n
         a2_new = torch.sum(gamma2) / self.n
@@ -80,9 +80,16 @@ class EM:
 
 def main():
     em = EM()
+    print(
+        f'True params: a1:{em.a1_true}, u1:{em.u1_true}, s1:{em.s1_true}, a2:{em.a2_true}, u2:{em.u2_true}, s2{em.s2_true}')
     em.train()
     a1, u1, s1, a2, u2, s2 = em.get_params()
-    print(a1, u1, s1, a2, u2, s2)
+    print(
+        f'Pred params: a1:{a1.item():.4f}, u1:{u1.item():.4f}, s1:{s1.item():.4f}, a2:{a2.item():.4f}, u2:{u2.item():.4f}, s2{s2.item():.4f}')
+
+    # y.shape:  torch.Size([1000])
+    # True params: a1:0.3, u1:-2, s1:0.5, a2:0.7, u2:0.5, s21
+    # Pred params: a1:0.2880, u1:-2.0430, s1:0.4646, a2:0.7120, u2:0.4321, s20.9933
 
 
 if __name__ == '__main__':
