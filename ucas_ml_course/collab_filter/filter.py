@@ -40,6 +40,7 @@ def main():
     # average rating
     print('')
     avg_r = torch.mean(ups, dim=1)
+    avg_r[user_idx] = torch.sum(ups[user_idx]) / (ups.shape[1] - 1)  # user 2 -- div 3
     print('average rating: ', avg_r)
 
     # compute rating
@@ -54,8 +55,8 @@ def main():
     # Cosine similarity of user 2:  tensor([0.9562, 1.0000, 0.9798, 0.8024, 0.9238])
     # Top 3 similar users of user 2: User_3, User_1, User_5.
     #
-    # average rating:  tensor([2.5000, 3.0000, 1.5000, 2.5000, 2.5000])
-    # User 2’s rating for Product 2:  2.850874423980713
+    # average rating:  tensor([2.5000, 4.0000, 1.5000, 2.5000, 2.5000])
+    # User 2’s rating for Product 2:  3.850874423980713
 
 
 if __name__ == '__main__':
